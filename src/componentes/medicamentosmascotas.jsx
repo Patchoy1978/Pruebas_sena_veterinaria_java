@@ -13,6 +13,21 @@ export const MedicamentosParaMascotas = () => {
 
   // creamos la función para el manejo  del formulario
   const enviar = (data) => {
+    data.filtro_antipulgas = data.filtro_antipulgas ? "Filtro Antipulgas" : "";
+    data.filtro_antiparasitario = data.filtro_antiparasitario
+      ? "Filtro Antiparasitario"
+      : "";
+    data.filtro_vitaminas = data.filtro_vitaminas ? "Filtro Vitaminas" : "";
+    data.filtro_suplementos = data.filtro_suplementos
+      ? "Filtro Suplementos"
+      : "";
+    data.filtro_medicamentos = data.filtro_medicamentos
+      ? "Filtro Medicamentos"
+      : "";
+    data.filtro_hills = data.filtro_hills ? "Filtro Hills" : "";
+    data.filtro_bayer = data.filtro_bayer ? "Filtro Bayer" : "";
+    data.filtro_bistop = data.filtro_bistop ? "Filtro Bistop" : "";
+    data.filtro_baytril = data.filtro_baytril ? "Filtro baytril" : "";
     console.log(data);
   };
 
@@ -34,13 +49,21 @@ export const MedicamentosParaMascotas = () => {
               <nav className="menus">
                 <ul className="ul-menu1" id="categorias">
                   <li>
-                    <input type="checkbox" id="filtro-antipulgas" />
+                    <input
+                      type="checkbox"
+                      id="filtro-antipulgas"
+                      {...register("filtro_antipulgas")} //capturamos la elección del usuario
+                    />
                     <label className="label-check1" htmlFor="filtro-antipulgas">
                       Antipulgas
                     </label>
                   </li>
                   <li>
-                    <input type="checkbox" id="filtro-antiparasitario" />
+                    <input
+                      type="checkbox"
+                      id="filtro-antiparasitario"
+                      {...register("filtro_antiparasitario")} //capturamos la elección del usuario
+                    />
                     <label
                       className="label-check1"
                       htmlFor="filtro-antiparasitario"
@@ -49,13 +72,21 @@ export const MedicamentosParaMascotas = () => {
                     </label>
                   </li>
                   <li>
-                    <input type="checkbox" id="filtro-vitaminas" />
+                    <input
+                      type="checkbox"
+                      id="filtro-vitaminas"
+                      {...register("filtro_vitaminas")} //capturamos la elección del usuario
+                    />
                     <label className="label-check1" htmlFor="filtro-vitaminas">
                       Vitaminas
                     </label>
                   </li>
                   <li>
-                    <input type="checkbox" id="filtro-suplementos" />
+                    <input
+                      type="checkbox"
+                      id="filtro-suplementos"
+                      {...register("filtro_suplementos")} //capturamos la elección del usuario
+                    />
                     <label
                       className="label-check1"
                       htmlFor="filtro-suplementos"
@@ -64,7 +95,11 @@ export const MedicamentosParaMascotas = () => {
                     </label>
                   </li>
                   <li>
-                    <input type="checkbox" id="filtro-medicamentos" />
+                    <input
+                      type="checkbox"
+                      id="filtro-medicamentos"
+                      {...register("filtro_medicamentos")} //capturamos la elección del usuario
+                    />
                     <label
                       className="label-check1"
                       htmlFor="filtro-medicamentos"
@@ -82,25 +117,41 @@ export const MedicamentosParaMascotas = () => {
               <nav className="menus">
                 <ul className="ul-menu1" id="marcas">
                   <li>
-                    <input type="checkbox" id="filtro-hills" />
+                    <input
+                      type="checkbox"
+                      id="filtro-hills"
+                      {...register("filtro_hills")} //capturamos la elección del usuario
+                    />
                     <label className="label-check1" htmlFor="filtro-hills">
                       Hills
                     </label>
                   </li>
                   <li>
-                    <input type="checkbox" id="filtro-bayer" />
+                    <input
+                      type="checkbox"
+                      id="filtro-bayer"
+                      {...register("filtro_bayer")} //capturamos la elección del usuario
+                    />
                     <label className="label-check1" htmlFor="filtro-bayer">
                       Bayer
                     </label>
                   </li>
                   <li>
-                    <input type="checkbox" id="filtro-bistop" />
+                    <input
+                      type="checkbox"
+                      id="filtro-bistop"
+                      {...register("filtro_bistop")} //capturamos la elección del usuario
+                    />
                     <label className="label-check1" htmlFor="filtro-bistop">
                       Bistop
                     </label>
                   </li>
                   <li>
-                    <input type="checkbox" id="filtro-baytril" />
+                    <input
+                      type="checkbox"
+                      id="filtro-baytril"
+                      {...register("filtro_baytril")} //capturamos la elección del usuario
+                    />
                     <label className="label-check1" htmlFor="filtro-baytril">
                       Baytril
                     </label>
@@ -128,14 +179,16 @@ export const MedicamentosParaMascotas = () => {
               id="tipo-mascota"
               {...register("tipo-mascosta")}
             >
-              {" "}
               {/* capturamos lo que ingresa el usuario */}
               <option value=""></option>
               <option value="Perros">Perros</option>
+              <option value="Gatos">Gatos</option>
+              <option value="Peces">Peces</option>
+              <option value="Conejos">Conejos</option>
             </select>
             <br />
             <label htmlFor="identificacion" className="label">
-              Identificación del Solicitante:{" "}
+              Identificación del Solicitante:
             </label>
             <br />
             <input
@@ -147,7 +200,7 @@ export const MedicamentosParaMascotas = () => {
             />
             <br />
             <label htmlFor="nombre" className="label">
-              Solicitante del Servicio:{" "}
+              Solicitante del Servicio:
             </label>
             <br />
             <input
@@ -159,9 +212,7 @@ export const MedicamentosParaMascotas = () => {
             />
             <br />
             <br />
-            <label className="label">
-              Listado de Alimentos Según Mascota:{" "}
-            </label>
+            <label className="label">Listado de Alimentos Según Mascota:</label>
             <br />
             <fieldset className="productos" id="productos">
               <div className="mostrador" id="mostrador">

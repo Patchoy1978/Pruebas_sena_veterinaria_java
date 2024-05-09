@@ -19,7 +19,7 @@ export const RegistroMascota = () => {
   const Open = (ruta) => {
     navigate(ruta);
   };
-  // cramos la función para el manejo  de los datos del formulario
+  // creamos la función para el manejo  de los datos del formulario
   const enviar = (data) => {
     data.vacuna1 = data.vacuna1 ? "Rabia" : "";
     data.vacuna2 = data.vacuna2 ? "Parvovirosis" : "";

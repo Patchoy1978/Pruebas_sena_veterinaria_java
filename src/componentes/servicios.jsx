@@ -124,6 +124,7 @@ export const Servicios = () => {
             <br />
           </form>
           <div className="button">
+            {/*abrimos la ventana en mencion (/ es la ventana de inicio) */}
             <button className="botones-sistema" onClick={() => open("/")}>
               Inicio
             </button>
