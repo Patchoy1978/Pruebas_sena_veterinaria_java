@@ -59,7 +59,7 @@ export const Servicios = () => {
             <h1 className="titulo">Servicios</h1>
 
             <label htmlFor="servicios" className="label">
-              Nombre del Servicio:{" "}
+              Nombre del Servicio:
             </label>
             <br />
             <select
@@ -67,8 +67,8 @@ export const Servicios = () => {
               name="servicios"
               id="servicios"
               onChange={(e) => setOption(e.target.value)}
-              // {...register("option")}
             >
+              {/* opciones para escoger los servicios */}
               <option value=""></option>
               <option value="Spa">Spa</option>
               <option value="Urgencias">Urgencias</option>
@@ -88,7 +88,7 @@ export const Servicios = () => {
             <br />
 
             <label htmlFor="identificacion" className="label">
-              Identificación del Solicitante:{" "}
+              Identificación del Solicitante:
             </label>
             <br />
             <input

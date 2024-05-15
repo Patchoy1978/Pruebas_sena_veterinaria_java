@@ -1,7 +1,9 @@
+// importamos las librerias necesarias
 import React from "react";
 import { Link } from "react-router-dom";
 
 export const Footer = () => {
+  // retornamos la página
   return (
     <footer className="footer">
       <div className="container-footer">

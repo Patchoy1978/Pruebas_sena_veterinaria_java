@@ -1,19 +1,25 @@
+// importaos las librerias necesarias
 import React from "react";
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 
 export const PoliticaPrivacidad = () => {
+  // usamos el useForm para manejar la validación de la politica
   const { register, handleSubmit } = useForm();
+  // usamos el useNavigate para la navegabilidad
   const navigate = useNavigate();
 
+  // creamos la función para la aceptación de la política
   const enviar = (data) => {
     console.log(data);
   };
 
+  // creamos la función para la navegabilidad
   const open = (ruta) => {
     navigate(ruta);
   };
 
+  // retornamos la página
   return (
     <div className="body">
       <div className="bienvenida">
@@ -135,6 +141,7 @@ export const PoliticaPrivacidad = () => {
           <br />
 
           <div className="botones">
+            {/* asignamos la funcionalidad al boton */}
             <button className="botones-sistema" onClick={() => open("/")}>
               Inicio
             </button>

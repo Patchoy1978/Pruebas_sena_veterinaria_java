@@ -240,16 +240,10 @@ export const RegistroMascota = () => {
 
           <div className="button">
             <button className="botones-sistema" onClick={() => Open("/")}>
-              {" "}
               {/*navegamos a la pagina en mención */}
               Inicio
             </button>
-            <button
-              className="botones-sistema"
-              onClick={() => Open("/servicios")} //navegamos a la página en mención
-            >
-              Ingresar
-            </button>
+
             {/* creamos la ventana modal */}
             <div>
               <Modal isOpen={isOpenRegistro} closeModal={closeRegistro}>

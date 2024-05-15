@@ -95,7 +95,7 @@ export const Spa = () => {
               id="nombre-mascota"
               placeholder="Ingresa el Nombre de la Mascota"
               {...register("nombre-mascota")}
-            />{" "}
+            />
             {/*capturamos lo que el usuario ingresa en el input */}
             <br />
             <label htmlFor="valor-servicio" className="label">
@@ -108,7 +108,7 @@ export const Spa = () => {
               id="valor-servicio"
               placeholder="valor del servicio"
               {...register("valor-servicio")}
-            />{" "}
+            />
             {/*capturamos lo que el usuario ingresa en el input */}
             <br />
             <br />
@@ -117,12 +117,12 @@ export const Spa = () => {
             </div>
             <br />
           </form>
+          {/*implementamos la funcion open para navegar a la pagina correspondiente */}
           <div className="botones">
             <button className="botones-sistema">Gestionar Pago</button>
             <button className="botones-sistema" onClick={() => open("/")}>
               Inicio
             </button>
-            {/*implementamos la funcion open para navegar a la pagina correspondiente */}
           </div>
         </div>
       </div>
