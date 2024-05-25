@@ -131,9 +131,9 @@ STATIC_URL = 'static/'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-# LIST OF ALLOWED HOSTS (SERVERS) TO CONNECT TO DJANGO 
+# Servidores autorizados para conectarse a Django
 CORS_ALLOWED_ORIGINS = [
-  
+  'http://localhost:3000/'
 ]
 
 #Documentacion api
