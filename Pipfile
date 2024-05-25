@@ -7,9 +7,9 @@ name = "pypi"
 mysqlclient = "*"
 djangorestframework = "*"
 django = "*"
-
 #Coneccion back-end front-end
 django-cors-headers = "*"
+coreapi = "*"
 
 [dev-packages]
 
