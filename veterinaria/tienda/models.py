@@ -3,9 +3,15 @@ from django.db import models
 class Departamento(models.Model):
     nombre_departamento = models.CharField(max_length=100)
 
+    def __str__(self) -> str:
+        return self.nombre_departamento
+
 class Ciudad(models.Model):
     nombre_ciudad = models.CharField(max_length=100)
     departamento = models.ForeignKey(Departamento, on_delete=models.PROTECT)
+
+    def __str__(self) -> str:
+        return self.nombre_ciudad
 
 class Cliente(models.Model):
     primer_nombre = models.CharField(max_length=200, null=False)
@@ -18,6 +24,9 @@ class Cliente(models.Model):
     contrasena = models.CharField(max_length=20)
     departamento = models.ForeignKey(Departamento, on_delete=models.PROTECT) 
     ciudad = models.ForeignKey(Ciudad, on_delete=models.PROTECT)
+
+
+
 
 
 class Telefono(models.Model):
