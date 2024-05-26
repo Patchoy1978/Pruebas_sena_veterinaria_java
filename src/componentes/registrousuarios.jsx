@@ -1,6 +1,7 @@
 import React from "react";
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
+import {registrar_usuario} from "../api/tienda.api"
 
 
 
@@ -12,11 +13,13 @@ export const RegistroUsuarios = () => {
 
     const navigate = useNavigate();
 
-    const enviar = (data) => {
+    const enviar = handleSubmit (async data => {
 
-        console.log(data)
+        const res = await registrar_usuario(data);
+        console.log(res)
+        
 
-    }
+    })
 
     const open = (ruta) => {
 
@@ -33,7 +36,7 @@ export const RegistroUsuarios = () => {
 
                 <div className="formulario_spa">
                 
-                    <form action=""  onSubmit={ handleSubmit(enviar) }>
+                    <form action=""  onSubmit={ enviar }>
                         
                         <h1 className="titulo">Registro de Usuario</h1>
 
@@ -83,7 +86,7 @@ export const RegistroUsuarios = () => {
                         <label className="label" htmlFor="departamento">Departamento Residencia:</label>
                         <br />
                         <input className="input" type="text" id="departamento" placeholder="Ingresa el departamento de Residencia" {...register("departamento", { required: true})}/>
-                        {errors.departamento && <span>Debes seleccionar un departament</span>}
+                        {errors.departamento && <span>Debes seleccionar un departamento</span>}
                         <br/>
                         <label className="label" htmlFor="ciudad">Ciudad Residencia:</label>
                         <br />
