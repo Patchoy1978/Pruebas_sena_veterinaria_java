@@ -35,49 +35,49 @@ export const RegistroUsuarios = () => {
                         
                         <h1 className="titulo">Registro de Usuario</h1>
 
-                        <label className="label" for="primernombre">Primer Nombre:</label>
+                        <label className="label" htmlFor="primernombre">Primer Nombre:</label>
                         <br />
-                        <input className="input" type="text" id="primernombre" placeholder="Ingresa tu Primer Nombre" {...register("primernombre")}/>
+                        <input className="input" type="text" id="primernombre" placeholder="Ingresa tu Primer Nombre" {...register("primernombre", { required: true})}/>
                         <br/>
-                        <label className="label" for="segundonombre">Segundo Nombre:</label>
+                        <label className="label" htmlFor="segundonombre">Segundo Nombre:</label>
                         <br />
-                        <input className="input" type="text" id="segundonombre" placeholder="Ingresa tu Segundo Nombre" {...register("segundonombre")}/>
+                        <input className="input" type="text" id="segundonombre" placeholder="Ingresa tu Segundo Nombre" {...register("segundonombre", )}/>
                         <br />
-                        <label className="label" for="primerapellido">Primer Apellido: </label>
+                        <label className="label" htmlFor="primerapellido">Primer Apellido: </label>
                         <br />
-                        <input className="input" type="text" id="primerapellido" placeholder="Ingresa tu Primer Apellido" {...register("primerapellido")}/>
+                        <input className="input" type="text" id="primerapellido" placeholder="Ingresa tu Primer Apellido" {...register("primerapellido", { required: true})}/>
                         <br/>
-                        <label className="label" for="segundoapellido">Segundo Apellido: </label>
+                        <label className="label" htmlFor="segundoapellido">Segundo Apellido: </label>
                         <br />
                         <input className="input" type="text" id="segundoapellido" placeholder="Ingresa tu Segundo Apellido" {...register("segundoapellido")}/>
                         <br />
-                        <label className="label" for="identificacion">Identificación:</label>
+                        <label className="label" htmlFor="identificacion">Identificación:</label>
                         <br />
-                        <input className="input" type="number" id="identificacion" placeholder="Ingresa tú número de Identificación" {...register("identificacion")}/>
+                        <input className="input" type="number" id="identificacion" placeholder="Ingresa tú número de Identificación" {...register("identificacion", { required: true})}/>
                         <br />
-                        <label className="label" for="fech-nacimiento">Fecha de Nacimiento:</label> 
+                        <label className="label" htmlFor="fech-nacimiento">Fecha de Nacimiento:</label> 
                         <br />
-                        <input className="input" type="date" id="fech-nacimiento" placeholder="Ingresa tú fecha de Nacimiento" {...register("fechanacimiento")}/>
+                        <input className="input" type="date" id="fech-nacimiento" placeholder="Ingresa tú fecha de Nacimiento" {...register("fechanacimiento", { required: true})}/>
                         <br />
-                        <label className="label" for="email">Correo Electrónico:</label>
+                        <label className="label" htmlFor="email">Correo Electrónico:</label>
                         <br />
-                        <input className="input" type="email" id="email" placeholder="Ingresa tú correo electronico" {...register("email")}/>
+                        <input className="input" type="email" id="email" placeholder="Ingresa tú correo electronico" {...register("email", { required: true})}/>
                         <br />
-                        <label className="label" for="telefono">Número Telefónico:</label>
+                        <label className="label" htmlFor="telefono">Número Telefónico:</label>
                         <br />
-                        <input className="input" type="phone" id="telefono" placeholder="Ingresa tú Número de Telefono" {...register("telefono")}/>
+                        <input className="input" type="phone" id="telefono" placeholder="Ingresa tú Número de Telefono" {...register("telefono", { required: true})}/>
                         <br />
-                        <label className="label" for="direccion">Dirección Residencia:</label>
+                        <label className="label" htmlFor="direccion">Dirección Residencia:</label>
                         <br />
-                        <input className="input" type="text" id="direccion" placeholder="Ingresa tú dirección" {...register("direccion")}/>
+                        <input className="input" type="text" id="direccion" placeholder="Ingresa tú dirección" {...register("direccion", { required: true})}/>
                         <br />
-                        <label className="label" for="ciudad">Ciudad Residencia:</label>
+                        <label className="label" htmlFor="ciudad">Ciudad Residencia:</label>
                         <br />
-                        <input className="input" type="text" id="ciudad" placeholder="Ingresa la Ciudad de Residencia" {...register("ciudad")}/>
+                        <input className="input" type="text" id="ciudad" placeholder="Ingresa la Ciudad de Residencia" {...register("ciudad", { required: true})}/>
                         <br/>
-                        <label className="label" for="departamento">Departamento Residencia:</label>
+                        <label className="label" htmlFor="departamento">Departamento Residencia:</label>
                         <br />
-                        <input className="input" type="text" id="departamento" placeholder="Ingresa el departamento de Residencia" {...register("departamento")}/>
+                        <input className="input" type="text" id="departamento" placeholder="Ingresa el departamento de Residencia" {...register("departamento", { required: true})}/>
                         <br /><br />
                         <div className="botones">
                             <button className="botones-sistema">Registrarse</button>
