@@ -1,115 +1,174 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
-import {registrar_usuario} from "../api/tienda.api"
-
-
+import { registrar_usuario, obtener_departamentos, obtener_ciudades } from "../api/tienda.api";
 
 export const RegistroUsuarios = () => {
-
-    const {register, handleSubmit, formState: {
-        errors
-    }} = useForm();
-
+    const { register, handleSubmit, formState: { errors } } = useForm();
     const navigate = useNavigate();
+    const [departamentos, setDepartamentos] = useState([]);
+    const [ciudades, setCiudades] = useState([]);
 
-    const enviar = handleSubmit (async data => {
+    useEffect(() => {
+        // Obtener los departamentos
+        obtener_departamentos()
+            .then(response => {
+                setDepartamentos(response.data);
+            })
+            .catch(error => {
+                console.error("Error fetching departamentos:", error);
+            });
 
-        const res = await registrar_usuario(data);
-        console.log(res)
-        
+        // Obtener las ciudades
+        obtener_ciudades()
+            .then(response => {
+                setCiudades(response.data);
+            })
+            .catch(error => {
+                console.error("Error fetching ciudades:", error);
+            });
+    }, []);
 
-    })
+    const enviar = handleSubmit(async data => {
+        try {
+            const fechaNacimiento = new Date(data.fecha_nacimiento);
+            data.fecha_nacimiento = fechaNacimiento.toISOString().split('T')[0];
+    
+            console.log("Datos enviados:", data);
+    
+            const res = await registrar_usuario(data);
+            console.log(res);
+    
+            // Si el registro es exitoso, mostrar un mensaje de alerta
+            alert("Registro exitoso");
+    
+        } catch (error) {
+            if (error.response) {
+                console.error("Error response:", error.response.data);
+            } else if (error.request) {
+                console.error("Error request:", error.request);
+            } else {
+                console.error("Error message:", error.message);
+            }
+            console.error("Error config:", error.config);
+        }
+    });
+    
 
     const open = (ruta) => {
-
         navigate(ruta);
-    
-    }
+    };
 
-    
-    return ( 
-
+    return (
         <div className='body'>
-
             <div className="bienvenida">
-
                 <div className="formulario_spa">
-                
-                    <form action=""  onSubmit={ enviar }>
-                        
+                    <form onSubmit={enviar}>
                         <h1 className="titulo">Registro de Usuario</h1>
 
-                        <label className="label" htmlFor="primernombre">Primer Nombre:</label>
+                        <label className="label" htmlFor="primer_nombre">Primer Nombre:</label>
                         <br />
-                        <input className="input" type="text" id="primernombre" placeholder="Ingresa tu Primer Nombre" {...register("primernombre", { required: true})}/>
-                        {errors.primernombre && <span>Este campo es requerido</span>}
-                        <br/>
-                        <label className="label" htmlFor="segundonombre">Segundo Nombre:</label>
+                        <input className="input" type="text" id="primer_nombre" placeholder="Ingresa tu Primer Nombre" {...register("primer_nombre", { required: true })}/>
+                        {errors.primer_nombre && <span>Este campo es requerido</span>}
                         <br />
-                        <input className="input" type="text" id="segundonombre" placeholder="Ingresa tu Segundo Nombre" {...register("segundonombre", )}/>
+
+                        <label className="label" htmlFor="segundo_nombre">Segundo Nombre:</label>
                         <br />
-                        <label className="label" htmlFor="primerapellido">Primer Apellido: </label>
+                        <input className="input" type="text" id="segundo_nombre" placeholder="Ingresa tu Segundo Nombre" {...register("segundo_nombre")}/>
                         <br />
-                        <input className="input" type="text" id="primerapellido" placeholder="Ingresa tu Primer Apellido" {...register("primerapellido", { required: true})}/>
-                        {errors.primerapellido && <span>Este campo es requerido</span>}
-                        <br/>
-                        <label className="label" htmlFor="segundoapellido">Segundo Apellido: </label>
+
+                        <label className="label" htmlFor="primer_apellido">Primer Apellido:</label>
                         <br />
-                        <input className="input" type="text" id="segundoapellido" placeholder="Ingresa tu Segundo Apellido" {...register("segundoapellido")}/>
+                        <input className="input" type="text" id="primer_apellido" placeholder="Ingresa tu Primer Apellido" {...register("primer_apellido", { required: true })}/>
+                        {errors.primer_apellido && <span>Este campo es requerido</span>}
                         <br />
-                        <label className="label" htmlFor="identificacion">Identificación:</label>
+
+                        <label className="label" htmlFor="segundo_apellido">Segundo Apellido:</label>
                         <br />
-                        <input className="input" type="number" id="identificacion" placeholder="Ingresa tú número de Identificación" {...register("identificacion", { required: true})}/>
-                        {errors.identificacion && <span>Este campo es requerido</span>}
+                        <input className="input" type="text" id="segundo_apellido" placeholder="Ingresa tu Segundo Apellido" {...register("segundo_apellido")}/>
                         <br />
-                        <label className="label" htmlFor="fech-nacimiento">Fecha de Nacimiento:</label> 
+
+                        <label className="label" htmlFor="tipo_documento">Tipo de Documento:</label>
                         <br />
-                        <input className="input" type="date" id="fech-nacimiento" placeholder="Ingresa tú fecha de Nacimiento" {...register("fechanacimiento", { required: true})}/>
-                        {errors.fechanacimiento && <span>Este campo es requerido</span>}
+
+                        
+                        <select className="input" id="tipo_documento" {...register("tipo_documento", { required: true })}>
+                            <option value="CC">Cédula</option>
+                            <option value="CX">Cédula de Extranjería</option>
+                            <option value="PA">Pasaporte</option>
+                        </select>
+                        {errors.tipo_documento && <span>Este campo es requerido</span>}
                         <br />
+
+                        <label className="label" htmlFor="numero_documento">Número de Documento:</label>
+                        <br />
+                        <input className="input" type="text" id="numero_documento" placeholder="Ingresa tu Número de Documento" {...register("numero_documento", { required: true })}/>
+                        {errors.numero_documento && <span>Este campo es requerido</span>}
+                        <br />
+
+                        <label className="label" htmlFor="fecha_nacimiento">Fecha de Nacimiento:</label>
+                        <br />
+                        <input className="input" type="date" id="fecha_nacimiento" placeholder="Ingresa tu Fecha de Nacimiento" {...register("fecha_nacimiento", { required: true })}/>
+                        {errors.fecha_nacimiento && <span>Este campo es requerido</span>}
+                        <br />
+
                         <label className="label" htmlFor="email">Correo Electrónico:</label>
                         <br />
-                        <input className="input" type="email" id="email" placeholder="Ingresa tú correo electronico" {...register("email", { required: true})}/>
+                        <input className="input" type="email" id="email" placeholder="Ingresa tu Correo Electrónico" {...register("email", { required: true })}/>
                         {errors.email && <span>Este campo es requerido</span>}
                         <br />
+
                         <label className="label" htmlFor="telefono">Número Telefónico:</label>
                         <br />
-                        <input className="input" type="phone" id="telefono" placeholder="Ingresa tú Número de Telefono" {...register("telefono", { required: true})}/>
+                        <input className="input" type="text" id="telefono" placeholder="Ingresa tu Número de Teléfono" {...register("telefono", { required: true })}/>
                         {errors.telefono && <span>Este campo es requerido</span>}
                         <br />
+
                         <label className="label" htmlFor="direccion">Dirección Residencia:</label>
                         <br />
-                        <input className="input" type="text" id="direccion" placeholder="Ingresa tú dirección" {...register("direccion", { required: true})}/>
+                        <input className="input" type="text" id="direccion" placeholder="Ingresa tu Dirección" {...register("direccion", { required: true })}/>
                         {errors.direccion && <span>Este campo es requerido</span>}
                         <br />
+
                         <label className="label" htmlFor="departamento">Departamento Residencia:</label>
                         <br />
-                        <input className="input" type="text" id="departamento" placeholder="Ingresa el departamento de Residencia" {...register("departamento", { required: true})}/>
+                        <select className="input" id="departamento" {...register("departamento", { required: true })}>
+                        <option value="">Seleccione un departamento</option>
+                        {departamentos.map(departamento => (
+                        <option key={departamento.id} value={departamento.id}>{departamento.nombre_departamento}</option>
+                        ))}
+                        </select>
                         {errors.departamento && <span>Debes seleccionar un departamento</span>}
-                        <br/>
+                        <br />
+
                         <label className="label" htmlFor="ciudad">Ciudad Residencia:</label>
                         <br />
-                        <input className="input" type="text" id="ciudad" placeholder="Ingresa la Ciudad de Residencia" {...register("ciudad", { required: true})}/>
+                        <select className="input" id="ciudad" {...register("ciudad", { required: true })}>
+                            <option value="">Seleccione una ciudad</option>
+                            {ciudades.map(ciudad => (
+                                <option key={ciudad.id} value={ciudad.id}>{ciudad.nombre_ciudad}</option>
+                            ))}
+                        </select>
                         {errors.ciudad && <span>Debes seleccionar una ciudad</span>}
+
+                        <label className="label" htmlFor="contrasena">establece contrasena:</label>
+                        <br />
+                        <input className="input" type="text" id="contrasena" placeholder="Ingresa tu contrasena" {...register("contrasena", { required: true })}/>
+                        {errors.contrasena && <span>Este campo es requerido</span>}
+                        <br />
                         <br /><br />
+
                         <div className="botones">
                             <button className="botones-sistema">Registrarse</button>
                         </div>
                     </form>
-                    <br/>
+                    <br />
                     <div className="button">
                         <button className="botones-sistema" onClick={() => open("/registromascota")}>Registrar Mascota</button>
                         <button className="botones-sistema" onClick={() => open("/")}>Inicio</button>
                     </div>
-
                 </div>
-
-                
             </div>
-
         </div>
-
     );
-}
- 
+};

@@ -20,20 +20,11 @@ class Cliente(models.Model):
     segundo_apellido = models.CharField(max_length=200, null=True)
     fecha_nacimiento = models.DateField(null=False)
     email = models.EmailField(unique=True, null=False)
+    telefono = models.CharField(max_length=10)
     direccion = models.CharField(max_length=400)
     contrasena = models.CharField(max_length=20)
     departamento = models.ForeignKey(Departamento, on_delete=models.PROTECT) 
     ciudad = models.ForeignKey(Ciudad, on_delete=models.PROTECT)
-
-
-
-
-
-class Telefono(models.Model):
-    numero_telefono = models.CharField(max_length=10)
-    cliente = models.ForeignKey(Cliente, on_delete=models.CASCADE)
-
-class Documento(models.Model):
     CEDULA = 'CC'
     C_EXTRANJERIA = 'CX'
     PASAPORTE = 'PA'
@@ -44,7 +35,8 @@ class Documento(models.Model):
     ]
     tipo_documento =  models.CharField(max_length=2, choices=OPCIONES_DOCUMENTOS, default=CEDULA)
     numero_documento = models.CharField(max_length=30, unique=True)
-    cliente = models.OneToOneField(Cliente, on_delete=models.CASCADE, primary_key=True)
+    
+
 
 class TipoProducto(models.Model):
     clase_producto = models.CharField(max_length=255, null=False)
