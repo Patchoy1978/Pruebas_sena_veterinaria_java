@@ -29,6 +29,7 @@ export const Index = () => {
   };
   
 
+  //retornamos el codigo html para visualizar la página
   return (
     <div className='body'>
       <div className="bienvenida">

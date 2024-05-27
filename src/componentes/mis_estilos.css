@@ -9,16 +9,12 @@
 
 /*para el body y cargando la imagen*/
 .body {
-  min-height: 100vh;
-  background-image: linear-gradient(
-      rgba(255, 255, 243, 0.65),
-      rgba(255, 255, 243, 0.65)
-    ),
+  min-height: 100%;
+  background-image: linear-gradient(rgba(255, 255, 243, 0.2)),
     url("../img/logo veterinaria con nombre.png");
   background-repeat: no-repeat;
   background-position: center center;
   background-attachment: fixed;
-  background-size: contain;
 }
 
 .encabezado {
@@ -124,6 +120,20 @@
   font-weight: bold;
   padding: 5px;
 }
+.parrafos {
+  font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
+    "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
+  font-size: 28px;
+  color: rgb(87, 53, 41);
+  font-weight: bold;
+}
+.parrafos2 {
+  font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
+    "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
+  font-size: 28px;
+  color: #658b19;
+  font-weight: bolder;
+}
 /*para el manejo de los label*/
 .label {
   color: rgb(87, 53, 41);
@@ -214,18 +224,7 @@
   left: 0;
   list-style-type: none;
 }
-/*para el manejo de los menu
-.menu-oculto1 {
-  display: none;
-  opacity: 0;
-  position: relative;
-  top: calc(100% + 5px);
-  left: 0;
-  font-family: Verdana, Geneva, Tahoma, sans-serif;
-  color: rgb(87, 53, 41);
-  font-size: 14px;
-  font-weight: bold;
-}*/
+
 /*para el manejo de los menu*/
 .ul-menu > li:hover .menu-oculto {
   opacity: 1;
@@ -276,16 +275,12 @@
   background-color: #8eb540;
   content: "\f00c";
   color: #573529;
-  font-family: FontAwesome;
+  font-family: "FontAwesome";
   font-size: 16px;
   transform: rotate(360deg);
+  font-weight: bold;
 }
 
-/*para el manejo de los menu
-.ul-menu > li:hover .menu-oculto1 {
-  opacity: 1;
-  display: block;
-}
 /*para el manejo de los menu*/
 .opciones-menu {
   border: none;
@@ -296,25 +291,15 @@
   font-size: 20px;
   font-weight: bold;
 }
-/*para el manejo de los menu
-.opciones-menu::after {
-  display: inline-block;
-  margin-left: 20px;
-}
-/*para el manejo de los menu
-.opciones-menu.desplegado .flecha {
-  transform: rotate(180deg);
-}
-/*para el manejo de los menu
-.opciones-menu:focus + .menu-oculto1 {
-  display: block;
-  opacity: 1;
-}
 
 /*para el manejo de los botones*/
 .botones {
   display: block;
   text-align: center;
+}
+.privacidad {
+  border: none;
+  background-color: #fffff300;
 }
 /*para el manejo de los link dela pantalla ppal*/
 .links {
@@ -359,6 +344,7 @@
 /*para los botones*/
 .botones-sistema {
   margin: 0px 20px;
+  margin-bottom: 10px;
 }
 /*para el manejo de los link*/
 a:link {
@@ -367,7 +353,7 @@ a:link {
   text-decoration: none;
   font-size: 24px;
   padding: 5px;
-  margin: 20px 10px;
+  margin: 5px;
 }
 /*para el manejo de los link*/
 a:hover {
@@ -449,7 +435,7 @@ a:visited {
 }
 
 .footer-links {
-  padding: 0 5px;
+  padding: 0 2px;
 }
 
 .footer-links ul li {
@@ -468,8 +454,7 @@ a:visited {
   padding-left: 6px;
 }
 
-.footer-links h4,
-.social-links h4 {
+.footer-links h4 {
   font-size: 20px;
   font-weight: bold;
   font-family: "snap ITC";
@@ -479,23 +464,65 @@ a:visited {
   border-bottom: 3px solid #573529;
   display: inline-block;
 }
-.social-links a {
-  display: inline-block;
-  min-height: 20px;
-  width: 40px;
-  margin: 0 10px 10px 0;
+
+.social-links {
+  display: block;
+  place-content: center;
+}
+
+/*se da estilo a las ventanas modales*/
+.modal {
+  position: fixed;
+  z-index: 999;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.75);
+  display: none;
+  justify-content: center;
   text-align: center;
-  line-height: 20px;
+}
+.modal.is-open {
+  display: flex;
+}
+
+.modal-container {
+  position: relative;
+  background-color: #fffff3;
+  min-width: 250px;
+  max-width: 850px;
+  min-height: 200px;
+  max-height: 800px;
   color: #573529;
-  transition: all 0.5s ease;
+  font-family: "snap ITC";
+  font-size: 24px;
+  padding: 1rem;
+  margin: auto;
+  border-radius: 30px;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+}
+.modal-container h2 {
+  color: #8eb540;
+}
+.modal-container iframe {
+  width: 600px;
+  height: 400px;
+}
+.link-icono {
+  cursor: pointer;
 }
 
 /* Media Queries */
 
-@media only screen and (min-width: 1025px) {
+@media only screen and (min-width: 1000px) {
   /* Ajustes para pantallas grandes */
   .container {
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+  .bienvenida {
+    grid-template-columns: 1fr 1fr 1fr;
   }
 
   body {
@@ -511,19 +538,36 @@ a:visited {
     background-size: contain;
     background-color: #fffff3;
   }
+  .botones-sistema {
+    margin: 0px 20px;
+    margin-bottom: 10px;
+  }
 }
 
 /* Media Query para pantallas de 769px a 1024px */
-@media only screen and (min-width: 769px) and (max-width: 1024px) {
+@media only screen and (min-width: 721px) and (max-width: 999px) {
+  body {
+    min-height: 100vh;
+    background-image: linear-gradient(
+        rgba(255, 255, 243, 0.65),
+        rgba(255, 255, 243, 0.65)
+      ),
+      url("../img/logo veterinaria con nombre.png");
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-attachment: fixed;
+    background-size: contain;
+    background-color: #fffff3;
+  }
+
   /* Ajustes para pantallas medianas */
-  .container {
-    grid-template-columns: repeat(2, 1fr);
+  .bienvenida {
+    grid-template-columns: 1fr 1fr 1fr;
   }
 
   /* Ajustes adicionales de tamaño de letra */
   body,
   #descripcion-articulos,
-  .titulo,
   .input,
   .input::placeholder,
   .input-1,
@@ -539,8 +583,16 @@ a:visited {
   a:link,
   a:hover,
   a:visited {
-    font-size: 22px; /* Reducción adicional del tamaño de letra */
+    font-size: 30px;
   }
+  .titulo {
+    font-size: 40;
+  }
+  .botones-sistema {
+    margin: 0px 20px;
+    margin-bottom: 5px;
+  }
+
   .formulario {
     margin-top: 5px;
     margin-bottom: 30px;
@@ -558,7 +610,7 @@ a:visited {
   }
   .input {
     background-color: #8eb540;
-    width: 700px;
+    width: 650px;
     font-family: Verdana, Geneva, Tahoma, sans-serif;
     color: rgb(87, 53, 41);
     font-size: 26px;
@@ -578,195 +630,72 @@ a:visited {
   /*para el manejo de los input*/
   .input-2 {
     background-color: #8eb540;
-    width: 300px;
+    width: 280px;
     font-family: Verdana, Geneva, Tahoma, sans-serif;
     color: rgb(87, 53, 41);
     font-size: 26px;
     font-weight: bold;
     padding: 5px;
   }
-  body {
-    min-height: 100vh;
-    background-image: linear-gradient(
-        rgba(255, 255, 243, 0.65),
-        rgba(255, 255, 243, 0.65)
-      ),
-      url("../img/logo veterinaria con nombre.png");
-    background-repeat: no-repeat;
-    background-position: center center;
-    background-attachment: fixed;
-    background-size: contain;
+  .modal {
+    position: fixed;
+    z-index: 999;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.75);
+    display: none;
+    justify-content: center;
+    text-align: center;
+  }
+  .modal.is-open {
+    display: flex;
+  }
+
+  .modal-container {
+    position: relative;
     background-color: #fffff3;
+    min-width: 400px;
+    max-width: 700px;
+    min-height: 350px;
+    max-height: 450px;
+    color: #573529;
+    font-family: "snap ITC";
+    font-size: 30px;
+    padding: 1rem;
+    margin: auto;
+    border-radius: 30px;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+  .modal-container h2 {
+    color: #8eb540;
+    font-size: 36px;
+  }
+  .modal-container iframe {
+    width: 450px;
+    height: 250px;
+  }
+  .modal-container img {
+    width: 80px;
+    height: 80px;
   }
 }
 
 /* Media Query para pantallas de 600px a 768px */
-@media only screen and (min-width: 600px) and (max-width: 768px) {
+@media only screen and (min-width: 540px) and (max-width: 720px) {
   /* Ajustes para pantallas medianas */
+  .bienvenida {
+    grid-template-columns: 1fr 1fr 1fr;
+  }
   .container {
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: 1fr 1fr 1fr;
   }
 
   /* Ajustes adicionales de tamaño de letra */
   body,
   #descripcion-articulos,
-  .titulo,
-  .input,
-  .input::placeholder,
-  .input-1,
-  .input-1::placeholder,
-  .input-2,
-  .input-2::placeholder,
-  .label,
-  .label-1,
-  .label-2,
-  .label-check,
-  .label-check1,
-  [type="checkbox"]:checked + label:before,
-  a:link,
-  a:hover,
-  a:visited {
-    font-size: 20px; /* Reducción adicional del tamaño de letra */
-  }
-  .input {
-    background-color: #8eb540;
-    width: 600px;
-    font-family: Verdana, Geneva, Tahoma, sans-serif;
-    color: rgb(87, 53, 41);
-    font-size: 26px;
-    font-weight: bold;
-    padding: 5px;
-    margin: 5px;
-  }
-  /*para el manejo de los input*/
-  .input-1 {
-    background-color: #8eb540;
-    width: 250px;
-    font-family: Verdana, Geneva, Tahoma, sans-serif;
-    color: rgb(87, 53, 41);
-    font-size: 26px;
-    font-weight: bold;
-  }
-  /*para el manejo de los input*/
-  .input-2 {
-    background-color: #8eb540;
-    width: 300px;
-    font-family: Verdana, Geneva, Tahoma, sans-serif;
-    color: rgb(87, 53, 41);
-    font-size: 26px;
-    font-weight: bold;
-    padding: 5px;
-  }
-  body {
-    min-height: 100vh;
-    background-image: linear-gradient(
-        rgba(255, 255, 243, 0.65),
-        rgba(255, 255, 243, 0.65)
-      ),
-      url("../img/logo veterinaria con nombre.png");
-    background-repeat: no-repeat;
-    background-position: center center;
-    background-attachment: fixed;
-    background-size: contain;
-    background-color: #fffff3;
-  }
-  .ul-menu {
-    display: flex;
-    place-items: left;
-    background-color: #fffff3;
-    margin: auto;
-    width: 250px;
-  }
-  .mostrador {
-    width: 250px;
-    transition: 0.5s ease;
-  }
-  .botones-sistema {
-    margin: auto 5px;
-    margin-bottom: 5px;
-    font-size: 20px;
-  }
-  .botones {
-    display: grid;
-    grid-column: 1fr;
-    width: 250px;
-    margin: auto;
-  }
-  .opciones-menu {
-    border: none;
-    background: none;
-    cursor: pointer;
-    font-family: Verdana, Geneva, Tahoma, sans-serif;
-    color: rgb(87, 53, 41);
-    font-size: 16px;
-    font-weight: bold;
-  }
-  .label-check1 {
-    font-size: 14px;
-  }
-}
-
-/* Media Query para pantallas de 320px a 599px */
-@media only screen and (min-width: 320px) and (max-width: 599px) {
-  /* Ajustes para pantallas pequeñas */
-  .container,
-  .bienvenida,
-  .bienvenida-1,
-  .bienvenida-1-1,
-  .bienvenida_spa {
-    grid-template-columns: 1fr;
-  }
-
-  .fondo {
-    background-color: #fffff3;
-  }
-  body {
-    min-height: 100vh;
-    background-image: linear-gradient(
-        rgba(255, 255, 243, 0.65),
-        rgba(255, 255, 243, 0.65)
-      ),
-      url("../img/logo veterinaria con nombre.png");
-    background-repeat: no-repeat;
-    background-position: center center;
-    background-attachment: fixed;
-    background-size: contain;
-    background-color: #fffff3;
-  }
-  .input {
-    background-color: #8eb540;
-    width: 450px;
-    font-family: Verdana, Geneva, Tahoma, sans-serif;
-    color: rgb(87, 53, 41);
-    font-size: 26px;
-    font-weight: bold;
-    padding: 5px;
-    margin: 5px;
-  }
-  /*para el manejo de los input*/
-  .input-1 {
-    background-color: #8eb540;
-    width: 250px;
-    font-family: Verdana, Geneva, Tahoma, sans-serif;
-    color: rgb(87, 53, 41);
-    font-size: 26px;
-    font-weight: bold;
-  }
-  /*para el manejo de los input*/
-  .input-2 {
-    background-color: #8eb540;
-    width: 300px;
-    font-family: Verdana, Geneva, Tahoma, sans-serif;
-    color: rgb(87, 53, 41);
-    font-size: 26px;
-    font-weight: bold;
-    padding: 5px;
-  }
-
-  /* Ajustes adicionales de tamaño de letra */
-  body,
-  #descripcion-articulos,
-  .titulo,
   .input,
   .input::placeholder,
   .input-1,
@@ -784,13 +713,285 @@ a:visited {
   a:visited {
     font-size: 18px; /* Reducción adicional del tamaño de letra */
   }
-  .footer-row {
+  .titulo {
+    font-size: 40px;
+  }
+  .botones-sistema {
+    margin: 0px 20px;
+    margin-bottom: 5px;
+  }
+  .input {
+    background-color: #8eb540;
+    width: 410px;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    color: rgb(87, 53, 41);
+    font-size: 14px;
+    font-weight: bold;
+    padding: 5px;
+    margin: 5px;
+  }
+  /*para el manejo de los input*/
+  .input-1 {
+    background-color: #8eb540;
+    width: 120px;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    color: rgb(87, 53, 41);
+    font-size: 14px;
+    font-weight: bold;
+  }
+  /*para el manejo de los input*/
+  .input-2 {
+    background-color: #8eb540;
+    width: 100px;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    color: rgb(87, 53, 41);
+    font-size: 12px;
+    font-weight: bold;
+    padding: 5px;
+  }
+  .titulo {
+    font-size: 32px;
+  }
+  body {
+    min-height: 100vh;
+    background-image: linear-gradient(
+        rgba(255, 255, 243, 0.65),
+        rgba(255, 255, 243, 0.65)
+      ),
+      url("../img/logo veterinaria con nombre.png");
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-attachment: fixed;
+    background-size: contain;
+    background-color: #fffff3;
+  }
+  .ul-menu {
+    display: flex;
+    place-items: left;
+    background-color: #fffff3;
+    margin: auto;
+    width: 250px;
+  }
+  .mostrador {
+    width: 250px;
+    transition: 0.5s ease;
+  }
+  .botones-sistema {
+    margin: auto 5px;
+    margin-bottom: 5px;
+    font-size: 20px;
+  }
+  .botones {
+    display: grid;
+    grid-column: 1fr;
+    width: 250px;
+    margin: auto;
+    margin-bottom: 5px;
+  }
+  .opciones-menu {
+    border: none;
+    background: none;
+    cursor: pointer;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    color: rgb(87, 53, 41);
+    font-size: 16px;
+    font-weight: bold;
+  }
+  .label-check1 {
+    font-size: 14px;
+  }
+  .footer-row,
+  .social-links {
     text-align: center;
   }
   .footer-links {
     width: 100%;
-    margin-bottom: 30px;
+    margin-bottom: 2px;
   }
+  .mostrador {
+    width: 80%;
+    transition: 0.5s ease;
+  }
+
+  .mostrador .fila {
+    display: flex;
+    justify-content: space-between;
+    margin: 5px;
+  }
+
+  .mostrador .fila .item {
+    max-width: 100px;
+    padding: 5px;
+    height: 150px;
+    text-align: center;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: 0.5s;
+  }
+
+  .mostrador .fila .item:hover {
+    background-color: #c2e281;
+  }
+
+  .mostrador .fila .item img {
+    width: 30px;
+  }
+
+  .mostrador .fila .item .descripcion-articulos {
+    color: #573529;
+    font-weight: bold;
+    font-size: 14px;
+  }
+
+  .mostrador .fila .item .precio {
+    color: #f74343;
+    font-weight: bold;
+    font-size: 12px;
+  }
+  .contenedor-foto {
+    height: 80px;
+    width: 80px;
+  }
+  .modal {
+    position: fixed;
+    z-index: 999;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.75);
+    display: none;
+    justify-content: center;
+    text-align: center;
+  }
+  .modal.is-open {
+    display: flex;
+  }
+
+  .modal-container {
+    position: relative;
+    background-color: #fffff3;
+    min-width: 300px;
+    max-width: 400px;
+    min-height: 100px;
+    max-height: 280px;
+    color: #573529;
+    font-family: "snap ITC";
+    font-size: 20px;
+    padding: 1rem;
+    place-items: center;
+    margin: auto;
+    border-radius: 30px;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+  .modal-container h2 {
+    color: #8eb540;
+    font-size: 20px;
+  }
+  .modal-container iframe {
+    width: 250px;
+    height: 200px;
+  }
+  .modal-container img {
+    width: 50px;
+    height: 50px;
+  }
+}
+
+/* Media Query para pantallas de 320px a 599px */
+@media only screen and (min-width: 200px) and (max-width: 539px) {
+  /* Ajustes para pantallas pequeñas */
+  .container,
+  .bienvenida,
+  .bienvenida-1,
+  .bienvenida-1-1,
+  .bienvenida_spa,
+  .productos {
+    grid-template-columns: 1fr;
+  }
+
+  .fondo {
+    background-color: #fffff3;
+  }
+  .titulo {
+    font-size: 28px;
+  }
+  body {
+    min-height: 100vh;
+    background-image: linear-gradient(
+        rgba(255, 255, 243, 0.65),
+        rgba(255, 255, 243, 0.65)
+      ),
+      url("../img/logo veterinaria con nombre.png");
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-attachment: fixed;
+    background-size: contain;
+    background-color: #fffff3;
+  }
+  .parrafos {
+    width: 300px;
+  }
+  .input {
+    background-color: #8eb540;
+    width: 330px;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    color: rgb(87, 53, 41);
+    font-size: 26px;
+    font-weight: bold;
+    padding: 5px;
+    margin: 5px;
+  }
+  /*para el manejo de los input*/
+  .input-1 {
+    background-color: #8eb540;
+    width: 250px;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    color: rgb(87, 53, 41);
+    font-size: 26px;
+    font-weight: bold;
+  }
+  /*para el manejo de los input*/
+  .input-2 {
+    background-color: #8eb540;
+    width: 300px;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    color: rgb(87, 53, 41);
+    font-size: 26px;
+    font-weight: bold;
+    padding: 5px;
+  }
+
+  /* Ajustes adicionales de tamaño de letra */
+  body,
+  #descripcion-articulos,
+  .input,
+  .input::placeholder,
+  .input-1,
+  .input-1::placeholder,
+  .input-2,
+  .input-2::placeholder,
+  .label,
+  .label-1,
+  .label-2,
+  .label-check,
+  .label-check1,
+  [type="checkbox"]:checked + label:before,
+  a:link,
+  a:hover,
+  a:visited {
+    font-size: 18px; /* Reducción adicional del tamaño de letra */
+  }
+  .footer-row,
+  .social-links {
+    text-align: center;
+  }
+  .footer-links {
+    width: 100%;
+    margin-bottom: 2px;
+  }
+
   .ul-menu {
     display: flex;
     place-items: left;
@@ -824,5 +1025,93 @@ a:visited {
   }
   .label-check1 {
     font-size: 14px;
+  }
+  .mostrador {
+    width: 50%;
+    transition: 0.5s ease;
+  }
+
+  .mostrador .fila {
+    display: flex;
+    justify-content: space-between;
+    margin: 5px;
+  }
+
+  .mostrador .fila .item {
+    max-width: 100px;
+    padding: 5px;
+    height: 180px;
+    text-align: center;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: 0.5s;
+  }
+
+  .mostrador .fila .item:hover {
+    background-color: #c2e281;
+  }
+
+  .mostrador .fila .item img {
+    width: 30px;
+  }
+
+  .mostrador .fila .item .descripcion-articulos {
+    color: #573529;
+    font-weight: bold;
+    font-size: 14px;
+  }
+
+  .mostrador .fila .item .precio {
+    color: #f74343;
+    font-weight: bold;
+    font-size: 12px;
+  }
+  .contenedor-foto {
+    height: 50px;
+    width: 50px;
+  }
+  .modal {
+    position: fixed;
+    z-index: 999;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.75);
+    display: none;
+    justify-content: center;
+    text-align: center;
+  }
+  .modal.is-open {
+    display: flex;
+  }
+
+  .modal-container {
+    position: relative;
+    background-color: #fffff3;
+    min-width: 180px;
+    max-width: 300px;
+    min-height: 100px;
+    max-height: 280px;
+    color: #573529;
+    font-family: "snap ITC";
+    font-size: 18px;
+    padding: 1rem;
+    margin: auto;
+    border-radius: 30px;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+  .modal-container h2 {
+    color: #8eb540;
+    font-size: 18px;
+  }
+  .modal-container iframe {
+    width: 180px;
+    height: 150px;
+  }
+  .modal-container img {
+    width: 50px;
+    height: 50px;
   }
 }
