@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
+import {toast} from 'react-hot-toast'
 import { registrar_usuario, obtener_departamentos, obtener_ciudades } from "../api/tienda.api";
 
 export const RegistroUsuarios = () => {
@@ -38,9 +39,8 @@ export const RegistroUsuarios = () => {
     
             const res = await registrar_usuario(data);
             console.log(res);
-    
-            // Si el registro es exitoso, mostrar un mensaje de alerta
-            alert("Registro exitoso");
+            toast.success('Usuario registrado exitosamente')
+            
     
         } catch (error) {
             if (error.response) {

@@ -1,4 +1,5 @@
 //importamos lo necesario par el funcionamiento de la página
+import { Toaster } from "react-hot-toast";
 import { Index } from "./componentes";
 import { NavBar } from "./componentes/navbar";
 import { Footer } from "./componentes/footer";
@@ -53,6 +54,7 @@ function App() {
       </Routes>
       {/* para que el footer este en todas las paginas */}
       <Footer />
+      <Toaster/>
     </BrowserRouter>
   );
 }
