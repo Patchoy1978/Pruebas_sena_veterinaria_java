@@ -1,35 +1,49 @@
-#funcion para CRUD
 from rest_framework import viewsets
-from rest_framework.views import APIView
-from rest_framework.response import Response
-from rest_framework import status
-from django.contrib.auth import authenticate
+from django.contrib.auth import authenticate, login
+from django.contrib.auth.hashers import make_password
+from django.http import JsonResponse
 
+from django.utils.decorators import method_decorator
+from django.views import View
+import json
 
 from . import serializador
 from .models import Cliente, Departamento, Ciudad
+
 
 class VistasCliente(viewsets.ModelViewSet):
     serializer_class = serializador.ClienteSerializado
     queryset = Cliente.objects.all()
 
+    def perform_create(self, serializer):
+        # Obtener la contraseña sin hashear del request
+        password = self.request.data.get('password')
+        # Hashear la contraseña
+        hashed_password = make_password(password)
+        # Establecer la contraseña hasheada en el serializer
+        serializer.validated_data['password'] = hashed_password
+        # Llamar al método perform_create del serializer
+        super().perform_create(serializer)
+
+
 class Departamentos(viewsets.ModelViewSet):
-    serializer_class =serializador.DepartamentoSerializado
+    serializer_class = serializador.DepartamentoSerializado
     queryset = Departamento.objects.all()
+    
 
 class Ciudades(viewsets.ModelViewSet):
-    serializer_class =serializador.CiudadSerializado
+    serializer_class = serializador.CiudadSerializado
     queryset = Ciudad.objects.all()
 
-class LoginView(APIView):
+
+class LoginView(View):
     def post(self, request):
-        email = request.data.get('email')
-        password = request.data.get('contrasena')
-        try:
-            user = Cliente.objects.get(email=email)
-            if user.contrasena == password:
-                return Response({'message': 'Login successful'}, status=status.HTTP_200_OK)
-            else:
-                return Response({'message': 'Invalid credentials'}, status=status.HTTP_401_UNAUTHORIZED)
-        except Cliente.DoesNotExist:
-            return Response({'message': 'User not found'}, status=status.HTTP_404_NOT_FOUND)
+        data = json.loads(request.body)
+        email = data.get('email')
+        password = data.get('password')
+        user = authenticate(request, email=email, password=password)
+        if user is not None:
+            login(request, user)
+            return JsonResponse({'mensaje': 'Inicio de sesión exitoso'})
+        else:
+            return JsonResponse({'error': 'Credenciales inválidas'}, status=400)

@@ -27,9 +27,7 @@ class CiudadAdmin(admin.ModelAdmin):
     search_fields = ['nombre_departamento']
 
 
-"""@admin.register(models.Documento)
-class DocumentoAdmin(admin.ModelAdmin):
-    search_fields = ['tipo_documento']"""
+
 
 
 

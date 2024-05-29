@@ -34,6 +34,12 @@ export const RegistroUsuarios = () => {
         try {
             const fechaNacimiento = new Date(data.fecha_nacimiento);
             data.fecha_nacimiento = fechaNacimiento.toISOString().split('T')[0];
+            data.last_login = null;
+            data.is_superuser = false;
+            data.is_active = true;
+            data.is_staff = false;
+            data.groups = [];
+            data.user_permissions = [];
     
             console.log("Datos enviados:", data);
     
@@ -151,10 +157,10 @@ export const RegistroUsuarios = () => {
                         </select>
                         {errors.ciudad && <span>Debes seleccionar una ciudad</span>}
 
-                        <label className="label" htmlFor="contrasena">establece contrasena:</label>
+                        <label className="label" htmlFor="password">establece contrasena:</label>
                         <br />
-                        <input className="input" type="text" id="contrasena" placeholder="Ingresa tu contrasena" {...register("contrasena", { required: true })}/>
-                        {errors.contrasena && <span>Este campo es requerido</span>}
+                        <input className="input" type="text" id="pasword" placeholder="Ingresa tu contrasena" {...register("password", { required: true })}/>
+                        {errors.password && <span>Este campo es requerido</span>}
                         <br />
                         <br /><br />
 

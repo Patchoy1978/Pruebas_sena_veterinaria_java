@@ -1,3 +1,4 @@
+from django.contrib.auth.models import AbstractBaseUser, BaseUserManager, PermissionsMixin
 from django.db import models
 
 class Departamento(models.Model):
@@ -12,8 +13,27 @@ class Ciudad(models.Model):
 
     def __str__(self) -> str:
         return self.nombre_ciudad
+    
+from django.contrib.auth.models import AbstractBaseUser, BaseUserManager, PermissionsMixin
+from django.db import models
 
-class Cliente(models.Model):
+class ClienteManager(BaseUserManager):
+    def create_user(self, email, password=None, **extra_fields):
+        if not email:
+            raise ValueError('El email debe ser proporcionado')
+        email = self.normalize_email(email)
+        user = self.model(email=email, **extra_fields)
+        user.set_password(password)
+        user.save(using=self._db)
+        return user
+
+    def create_superuser(self, email, password=None, **extra_fields):
+        extra_fields.setdefault('is_staff', True)
+        extra_fields.setdefault('is_superuser', True)
+
+        return self.create_user(email, password, **extra_fields)
+
+class Cliente(AbstractBaseUser, PermissionsMixin):
     primer_nombre = models.CharField(max_length=200, null=False)
     segundo_nombre = models.CharField(max_length=200, null=True)
     primer_apellido = models.CharField(max_length=200, null=False)
@@ -22,9 +42,9 @@ class Cliente(models.Model):
     email = models.EmailField(unique=True, null=False)
     telefono = models.CharField(max_length=10)
     direccion = models.CharField(max_length=400)
-    contrasena = models.CharField(max_length=20)
-    departamento = models.ForeignKey(Departamento, on_delete=models.PROTECT) 
+    departamento = models.ForeignKey(Departamento, on_delete=models.PROTECT)
     ciudad = models.ForeignKey(Ciudad, on_delete=models.PROTECT)
+    
     CEDULA = 'CC'
     C_EXTRANJERIA = 'CX'
     PASAPORTE = 'PA'
@@ -35,6 +55,18 @@ class Cliente(models.Model):
     ]
     tipo_documento =  models.CharField(max_length=2, choices=OPCIONES_DOCUMENTOS, default=CEDULA)
     numero_documento = models.CharField(max_length=30, unique=True)
+
+    is_active = models.BooleanField(default=True)
+    is_staff = models.BooleanField(default=False)
+
+    objects = ClienteManager()
+
+    USERNAME_FIELD = 'email'
+    REQUIRED_FIELDS = []
+
+    def __str__(self):
+        return self.email
+
     
 
 

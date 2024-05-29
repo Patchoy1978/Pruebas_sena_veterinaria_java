@@ -10,6 +10,7 @@ django = "*"
 #Coneccion back-end front-end
 django-cors-headers = "*"
 coreapi = "*"
+djangorestframework-simplejwt = "*"
 
 [dev-packages]
 
