@@ -4,27 +4,34 @@ import googleIcon from "../img/google-mas.png";
 import facebookIcon from "../img/facebook.png";
 import { Link, useNavigate } from 'react-router-dom';
 import { login_usuario } from "../api/tienda.api";
+import {toast} from 'react-hot-toast'
 
 export const Index = () => {
   const [email, setEmail] = useState('');
-  const [contrasena, setContrasena] = useState('');
+  const [password, setContrasena] = useState('');
   const [error, setError] = useState('');
   const navigate = useNavigate();
 
   const handleLogin = async (e) => {
     e.preventDefault();
+     // Verificar si email o password están vacíos
+     if (!email || !password) {
+      toast.error("Por favor ingresa tu usuario y/o contraseña");
+      return;
+    }
     try {
       // Imprimir la URL de la solicitud
     console.log('URL de la solicitud:', 'http://127.0.0.1:8000/tienda/api/v1/login/');
-      const response = await login_usuario({ email, contrasena });
+      const response = await login_usuario({ email, password });
       if (response.data && response.data.message) {
         setError(response.data.message);
       } else {
+        toast.success("BIENVENIDO");
         navigate('/servicios');
       }
     } catch (error) {
       console.error('Error:', error);
-      setError('An error occurred. Please try again later.');
+      toast.error("Tu usuario y/o contraseña son incorrectos");
     }
   };
   
@@ -40,7 +47,7 @@ export const Index = () => {
             <input type="email" className="input" id="email" placeholder="Ingresa tú Email" value={email} onChange={(e) => setEmail(e.target.value)} />
             <br />
             <label htmlFor="contrasena" className="label">Contraseña: </label><br />
-            <input type="password" className="input" id="contrasena" placeholder="Ingresa tú contraseña" value={contrasena} onChange={(e) => setContrasena(e.target.value)} />
+            <input type="password" className="input" id="contrasena" placeholder="Ingresa tú contraseña" value={password} onChange={(e) => setContrasena(e.target.value)} />
             <br /><br />
             {error && <p className="error-message">{error}</p>}
             <div className="botones">

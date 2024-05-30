@@ -51,6 +51,7 @@ export const RegistroUsuarios = () => {
         } catch (error) {
             if (error.response) {
                 console.error("Error response:", error.response.data);
+                toast.error('Datos incorrectos. Porfavor verifiquelos para hacer el correcto resgistro del usuario')
             } else if (error.request) {
                 console.error("Error request:", error.request);
             } else {
@@ -165,7 +166,7 @@ export const RegistroUsuarios = () => {
                         <br /><br />
 
                         <div className="botones">
-                            <button className="botones-sistema">Registrarse</button>
+                            <button className="botones-sistema" >Registrarse</button>
                         </div>
                     </form>
                     <br />
